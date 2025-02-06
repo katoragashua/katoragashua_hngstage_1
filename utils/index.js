@@ -21,6 +21,7 @@ function isPerfect(num) {
 }
 
 function isArmstrongNumber(num) {
+  if (num < 0) return false;
   const digits = num.toString().split("");
   const numDigits = digits.length;
   let sum = 0;
@@ -33,14 +34,15 @@ function isArmstrongNumber(num) {
 }
 
 function sumOfNumberDigits(num) {
-  if (Number(num) <= 0) return 0;
-  const numDigits = num.split("");
+  const numDigits = Math.abs(num).toString().split("");
+  console.log(numDigits);
+
   return numDigits.reduce((acc, digit) => acc + parseInt(digit), 0);
 }
 
 function isOddOrEven(num) {
-  if (num > 0 && num % 2 === 0) return "even";
-  if (num > 0 && num % 2 != 0) return "odd";
+  if (num % 2 === 0) return "even";
+  if (num % 2 != 0) return "odd";
 }
 
 async function getFunFact(num) {
@@ -48,7 +50,6 @@ async function getFunFact(num) {
     const res = await axios(`http://numbersapi.com/${num}/math`);
     const data = await res.data;
     return data;
-    
   } catch (error) {
     console.error("Error fetching fun fact:", error.message);
   }
