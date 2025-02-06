@@ -11,8 +11,8 @@ const { StatusCodes } = require("http-status-codes");
 
 const getNumberInfo = async (req, res) => {
   const { number } = req.query;
-  if (!number) throw new Error();
-  if (typeof Number(number) !== "number")
+  
+  if (!number || typeof Number(number) !== "number")
     return res.status(StatusCodes.BAD_REQUEST).json({
       number: "alphabet",
       error: true,
