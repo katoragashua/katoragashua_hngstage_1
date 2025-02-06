@@ -12,7 +12,7 @@ const { StatusCodes } = require("http-status-codes");
 const getNumberInfo = async (req, res) => {
   const { number } = req.query;
   
-  if (!number || typeof Number(number) !== "number")
+  if (!number || isNaN(Number(number)))
     return res.status(StatusCodes.BAD_REQUEST).json({
       number: "alphabet",
       error: true,
